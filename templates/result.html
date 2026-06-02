@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Leaf Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Leaf Disease Detection</h1>
+            <p>Analysis Results</p>
+        </header>
+
+        <main>
+            <div class="result-card">
+                <div class="image-section">
+                    <h3>Uploaded Image</h3>
+                    <img src="{{ image_data }}" alt="Uploaded leaf" class="result-image">
+                    <p class="filename">{{ filename }}</p>
+                </div>
+
+                <div class="prediction-section">
+                    <div class="main-result 
+                        {% if is_healthy %}healthy{% elif uncertain %}uncertain{% else %}disease{% endif %}">
+                        <h2>{{ predicted_class }}</h2>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" id="confFill"></div>
+                        </div>
+                        <p class="confidence-text">Confidence: <span id="confText"></span>%</p>
+
+                        <script>
+                            document.getElementById('confFill').style.width = '{{ confidence }}%';
+                            document.getElementById('confText').textContent = '{{ confidence }}';
+                        </script>
+
+                        {% if uncertain %}
+                        <span class="badge badge-warning">⚠️ Low Confidence — Verify Manually</span>
+                        {% endif %}
+
+                        {% if is_healthy %}
+                        <span class="badge badge-success">✅ Healthy Leaf</span>
+                        {% else %}
+                        <span class="badge badge-danger">🦠 Disease Detected</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="treatment-box">
+                        <h3>💊 Treatment Recommendation</h3>
+                        <p>{{ treatment }}</p>
+                    </div>
+
+                    <div class="top-k-section">
+                        <h3>📊 Top Predictions</h3>
+                        <table class="predictions-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Disease Class</th>
+                                    <th>Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in top_k %}
+                                <tr class="{% if loop.index == 1 %}top-result{% endif %}">
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ item.class }}</td>
+                                    <td>{{ "%.2f"|format(item.confidence * 100) }}%</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="{{ url_for('index') }}" class="btn-primary">🔄 Analyze Another Image</a>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with TensorFlow/Keras & OpenCV | Augmentation: Rotation & Zoom</p>
+        </footer>
+    </div>
+</body>
+
+</html>

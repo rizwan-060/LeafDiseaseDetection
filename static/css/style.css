@@ -1,0 +1,370 @@
+/* ─── Base Reset ─── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ─── Container ─── */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ─── Header ─── */
+header {
+    text-align: center;
+    padding: 30px 0;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ─── Alerts ─── */
+.alerts {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.alert-success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+/* ─── Upload Card ─── */
+.upload-card {
+    background: white;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.file-input-wrapper {
+    margin-bottom: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-label {
+    display: block;
+    padding: 20px;
+    border: 2px dashed #2d5a3f;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #2d5a3f;
+    font-weight: 500;
+}
+
+.file-label:hover {
+    background: #f0fdf4;
+    border-color: #1a472a;
+}
+
+/* ─── Preview ─── */
+.preview-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.preview-container.hidden {
+    display: none;
+}
+
+#preview-img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ─── Buttons ─── */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, #1a472a 0%, #2d5a3f 100%);
+    color: white;
+    padding: 14px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.actions {
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* ─── Info Section ─── */
+.info-section {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.info-section h3 {
+    color: #1a472a;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.crop-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.crop-tag {
+    background: #f0fdf4;
+    color: #166534;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #bbf7d0;
+}
+
+.note {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* ─── Result Card ─── */
+.result-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    margin-bottom: 30px;
+}
+
+.image-section {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.image-section h3 {
+    color: #1a472a;
+    margin-bottom: 15px;
+}
+
+.result-image {
+    max-width: 100%;
+    max-height: 350px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.filename {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* ─── Prediction Section ─── */
+.main-result {
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.main-result.healthy {
+    background: #f0fdf4;
+    border: 2px solid #22c55e;
+}
+
+.main-result.disease {
+    background: #fef2f2;
+    border: 2px solid #ef4444;
+}
+
+.main-result.uncertain {
+    background: #fffbeb;
+    border: 2px solid #f59e0b;
+}
+
+.main-result h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.confidence-bar {
+    width: 100%;
+    max-width: 400px;
+    height: 20px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 10px;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.confidence-text {
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+/* ─── Badges ─── */
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 5px;
+}
+
+.badge-success {
+    background: #22c55e;
+    color: white;
+}
+
+.badge-danger {
+    background: #ef4444;
+    color: white;
+}
+
+.badge-warning {
+    background: #f59e0b;
+    color: white;
+}
+
+/* ─── Treatment Box ─── */
+.treatment-box {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.treatment-box h3 {
+    color: #1e40af;
+    margin-bottom: 10px;
+}
+
+.treatment-box p {
+    color: #374151;
+    font-size: 1.05rem;
+}
+
+/* ─── Top-K Table ─── */
+.top-k-section h3 {
+    color: #1a472a;
+    margin-bottom: 15px;
+}
+
+.predictions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.predictions-table th {
+    background: #f0fdf4;
+    color: #166534;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #bbf7d0;
+}
+
+.predictions-table td {
+    padding: 12px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.predictions-table tr:hover {
+    background: #f9fafb;
+}
+
+.top-result {
+    background: #f0fdf4;
+    font-weight: 600;
+}
+
+/* ─── Footer ─── */
+footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .upload-card, .result-card, .info-section {
+        padding: 20px;
+    }
+    
+    .crop-grid {
+        gap: 6px;
+    }
+    
+    .crop-tag {
+        font-size: 0.8rem;
+        padding: 4px 10px;
+    }
+}

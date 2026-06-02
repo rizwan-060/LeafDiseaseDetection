@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf Disease Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 Leaf Disease Detection</h1>
+            <p>Upload a leaf image to identify the disease and get treatment recommendations</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alerts">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            <div class="upload-card">
+                <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input 
+                            type="file" 
+                            name="file" 
+                            id="file" 
+                            accept=".jpg,.jpeg,.png,.bmp"
+                            required
+                            onchange="previewImage(this)"
+                        >
+                        <label for="file" class="file-label">
+                            <span id="file-text">Choose an image...</span>
+                        </label>
+                    </div>
+                    
+                    <div id="preview-container" class="preview-container hidden">
+                        <img id="preview-img" alt="Preview">
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        🔍 Analyze Leaf
+                    </button>
+                </form>
+            </div>
+
+            <div class="info-section">
+                <h3>Supported Crops</h3>
+                <div class="crop-grid">
+                    <span class="crop-tag">Apple</span>
+                    <span class="crop-tag">Blueberry</span>
+                    <span class="crop-tag">Cherry</span>
+                    <span class="crop-tag">Corn</span>
+                    <span class="crop-tag">Grape</span>
+                    <span class="crop-tag">Orange</span>
+                    <span class="crop-tag">Peach</span>
+                    <span class="crop-tag">Pepper</span>
+                    <span class="crop-tag">Potato</span>
+                    <span class="crop-tag">Raspberry</span>
+                    <span class="crop-tag">Soybean</span>
+                    <span class="crop-tag">Squash</span>
+                    <span class="crop-tag">Strawberry</span>
+                    <span class="crop-tag">Tomato</span>
+                </div>
+                <p class="note">38 disease categories including healthy leaf detection</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with TensorFlow/Keras & OpenCV | Augmentation: Rotation & Zoom</p>
+        </footer>
+    </div>
+
+    <script>
+        function previewImage(input) {
+            const container = document.getElementById('preview-container');
+            const img = document.getElementById('preview-img');
+            const text = document.getElementById('file-text');
+            
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                    container.classList.remove('hidden');
+                    text.textContent = input.files[0].name;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+</html>
